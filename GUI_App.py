@@ -12,10 +12,9 @@ content.pack(expand=True, fill="both")
 
 frame = ttk.Frame(content, borderwidth=5, relief='ridge', width=50, height=50)
 frame.pack(expand=True, fill="both", padx=5, pady=5)
-# magnetic_field_label = ttk.Label(frame, text="Magnetic field: ")
-# magnetic_field_label.pack()
-data_label = ttk.Label(frame, text="Data Info: ")
-data_label.pack()
+magnetic_field_label = ttk.Label(frame, text="Magnetic field: ")
+magnetic_field_label.pack()
+
 
 def submitVelocity():
     global velocity 
@@ -91,11 +90,49 @@ generate_field.pack()
 
 
 
+# csv_enabled = False
+
+# def csv_button_on():
+#     global csv_enabled
+#     csv_enabled = True
+
+
+
 def run_simulation():
     simu_1 = Simulation(velocity, start_1, end_1, start_2, end_2)
     simu_1.start()
+    # info = simu_1.get_variables()
 
+    data_label = ttk.Label(frame, text=f"{simu_1.atom_continuesText}")
+    data_label.pack()
+    data_label2 = ttk.Label(frame, text= f"{simu_1.atom_stopsText}")
+    data_label2.pack()
+
+    # WIP: Create CSV file
+
+
+    # csv_button = ttk.Button(content, text="Create CSV", command=csv_button_on)
+    # csv_button.pack()
+
+    # if csv_enabled == True:
+    #     name_label = ttk.Label(content, text="Provide a name for the file: ")
+    #     name_label.pack()
+    #     name_entry = ttk.Entry(content, width=10)
+    #     name_entry.pack()
+    #     def save_csv():
+    #         name = name_entry.get().strip()
+    #         if name:
+    #             simu_1.create_csv(name)
+    #     save_button = ttk.Button(content, text="Save CSV", command=save_csv)
+    #     save_button.pack()
+
+    
 button = ttk.Button(content, text="Start Simulation", command=run_simulation)
 button.pack(pady=10)
+
+
+
+
+
 
 root.mainloop()
