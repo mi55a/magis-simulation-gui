@@ -15,6 +15,12 @@ frame.pack(expand=True, fill="both", padx=5, pady=5)
 magnetic_field_label = ttk.Label(frame, text="Magnetic field: ")
 magnetic_field_label.pack()
 
+position_label = ttk.Label(frame, text="Position: --m")
+position_label.pack()
+time_label = ttk.Label(frame, text="Time: --s")
+time_label.pack()
+
+
 
 def submitVelocity():
     global velocity 
@@ -27,6 +33,8 @@ velocity_label = ttk.Label(content, text="Velocity (can't be 0 or negative): ")
 velocity_label.pack()
 velocity_input = ttk.Entry(content, width=10)
 velocity_input.pack()
+
+
 
 
 
@@ -44,6 +52,8 @@ def submit_Fields():
     magnetic_field_label = ttk.Label(frame, text=f"Magnetic field: [({start_1},{end_1}), ({start_2},{end_2})] ")
     magnetic_field_label.pack()
 
+    submit_field_button.config(state="disabled")
+
 
 
     print("Success!")
@@ -60,6 +70,7 @@ start2_label = ttk.Entry(content, width=10)
 start2_label.pack()
 end2_label = ttk.Entry(content, width=10)
 end2_label.pack()
+
 
 submit_field_button = ttk.Button(content, text="Submit Magnetic Fields", command=submit_Fields)
 submit_field_button.pack()
@@ -100,7 +111,12 @@ generate_field.pack()
 
 def run_simulation():
     simu_1 = Simulation(velocity, start_1, end_1, start_2, end_2)
-    simu_1.start()
+    def update_labels(curr_time, position):
+        position_label.config(text=f"Position: {position:.2f} m")
+        time_label.config(text=f"Time: {curr_time:.1f} s")
+        frame.update_idletasks()
+        
+    simu_1.start(update_callback=update_labels)
     # info = simu_1.get_variables()
 
     data_label = ttk.Label(frame, text=f"{simu_1.atom_continuesText}")
@@ -129,10 +145,5 @@ def run_simulation():
     
 button = ttk.Button(content, text="Start Simulation", command=run_simulation)
 button.pack(pady=10)
-
-
-
-
-
 
 root.mainloop()

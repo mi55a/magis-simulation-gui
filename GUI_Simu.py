@@ -29,13 +29,15 @@ class Simulation:
         self.initial_velocity = velocity
         self.initial_position = position
         self.initial_time = time_step
-    def start(self):
+    def start(self, update_callback=None):
         for t in range(100):
             global curr_time
             if self.stopped:
                 break
             curr_time = t*self.time_step
             self.position += self.velocity * self.time_step
+            if update_callback:
+                update_callback(curr_time, self.position)
             if any(start <= self.position <= end for (start, end) in self.magnet_zones):
                 self.state_on = True
                 self.atom_continuesText = f"Magnetic field detected at {self.position:.2f} m  and time {curr_time:.1f}s - stopping! State is off?: {self.state_on}"
