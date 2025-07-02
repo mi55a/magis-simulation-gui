@@ -2,7 +2,7 @@
 
 Mac and Linux share a lot of commands together but I created this guide for easier instructions, instead of Googling what the equivalent of each command is. 
 
-Make sure you've downloaded a recent version of Python! Here's the Python website and the releases for macOS. [Python.org] (https://www.python.org/downloads/macos/)
+Make sure you've downloaded a recent version of Python! Here's the Python website and the releases for macOS. [Python.org](https://www.python.org/downloads/macos/)
 
 It is recommended that you also install Homebrew (for package managing). You will need it to download mosquitto. It will ask you for a few other steps. 
 ```
@@ -57,5 +57,32 @@ Restart mosquitto for the changes to take effect
 brew services restart mosquitto
 ```
 
+Before running the scripts, you'll want to make sure to edit magsys.service and start_combo.sh with your specific information.
 
+In magsys.service, you want to change the following:
+```
+User=pi
+Group=pi
+ExecStart=/home/pi/Magnetometer/python/start_combo.sh
+```
+Instead of pi, put your username. If you don't remember your username, type <code>whoami</code> in another Terminal page. Replace ExecStart with the path to start_combo.sh. If you have VSCode, right click and click "Copy Path"
 
+In start_combo.sh, you want to change the following:
+```
+export H=/home/pi -> export H=/Users/yourusername
+```
+You can run the data simulation or the actual application (when you have access to the Magnetometer)
+
+For the data simulation:
+Execute the macOS-specific script for running the simulation
+```
+chmod +x run_simulation_macos.sh
+./run_simulation_macos.sh
+```
+
+For the actual application:
+```
+chmod +x run_gui.sh
+./run_gui.sh
+
+```
