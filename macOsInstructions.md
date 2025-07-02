@@ -12,11 +12,12 @@ To check if it's installed:
 ```
 brew --version
 ```
-Now, clone the repository
+## Clone the Repository
 ```
 cd ~/
 git clone git@github.com:jbkowalkowski/Magnetometer.git [-b branch_name]
 ```
+## Configure a Python Environment
 A virtual environment is needed to run the servers. 
 ```
 python3 -m venv ~/Magnetometer/python/magserv
@@ -25,10 +26,12 @@ Now activate it
 ```
 source ~/Magnetometer/python/magserv/bin/activate
 ```
+### Install the Packages
 Packages are important!
 ```
 pip3 install paho-mqtt
 ```
+## Install Mosquitto
 Installing mosquitto from Homebrew
 ```
 brew install mosquitto
@@ -42,6 +45,7 @@ It will return something like:
 ```
 1683395033: mosquitto version 2.0.15 running
 ```
+### Enable Remote Access to Mosquitto Broker
 To enable remote access to mosquitto broker, run the following command to open the mosquitto.conf file
 ```
 nano /opt/homebrew/etc/mosquitto/mosquitto.conf
@@ -71,7 +75,11 @@ In start_combo.sh, you want to change the following:
 ```
 export H=/home/pi -> export H=/Users/yourusername
 ```
-You can run the data simulation or the actual application (when you have access to the Magnetometer)
+You can either:
+
+Run the data simulation (to test MQTT + data flow with fake data), or
+
+Launch the GUI with real hardware, once the Magnetometer is connected.
 
 For the data simulation:
 Execute the macOS-specific script for running the simulation
@@ -79,7 +87,6 @@ Execute the macOS-specific script for running the simulation
 chmod +x run_simulation_macos.sh
 ./run_simulation_macos.sh
 ```
-
 For the actual application:
 ```
 chmod +x run_gui.sh
