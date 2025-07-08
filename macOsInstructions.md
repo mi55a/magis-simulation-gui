@@ -32,7 +32,7 @@ Packages are important!
 pip3 install paho-mqtt
 ```
 ## Install Mosquitto
-Installing mosquitto from Homebrew
+I recommend opening another Terminal window for this. Now, we'll install mosquitto from Homebrew
 ```
 brew install mosquitto
 brew services start mosquitto
@@ -46,7 +46,7 @@ It will return something like:
 1683395033: mosquitto version 2.0.15 running
 ```
 ### Enable Remote Access to Mosquitto Broker
-To enable remote access to mosquitto broker, run the following command to open the mosquitto.conf file
+To enable remote access to mosquitto broker, run the following command to open the mosquitto.conf file.
 ```
 nano /opt/homebrew/etc/mosquitto/mosquitto.conf
 ```
@@ -89,7 +89,7 @@ chmod +x run_simulation_macos.sh
 ```
 For the actual application:
 ```
-chmod +x run_gui.sh
-./run_gui.sh
+python3 trolley_data_sub2.py
+python3 magnetometer_gui.py
 
 ```
