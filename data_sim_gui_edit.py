@@ -146,6 +146,7 @@ table_frame = tk.Frame(gui_App)
 table_frame.grid(row=1, column=1, sticky='n')
 
 
+
 # Window toggle buttons (right)
 
 window_frame = tk.Frame(gui_App)
@@ -217,6 +218,9 @@ data_table.column('z', width=200, anchor='center')
 
 # data_table.grid(row=0, column=0, padx=(0,60), sticky="nsew")
 data_table.grid(row=0, column=0, padx=50, pady=30)
+
+end_button = ttk.Button(table_frame, text="Exit App", style="Cmd.STOP.TButton")
+end_button.grid(row=1, column=0, pady=10)
 
 
 data_var = tk.StringVar()

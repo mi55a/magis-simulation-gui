@@ -6,6 +6,10 @@ from scipy.interpolate import griddata
 import os
 
 # Define desktop and folders
+
+# Notes from Mily: make Linux and macOS friendly code for this section. Also an idea:
+# Connect this with the GUI and this file can locate the folder. It is helpful that the folder name is the same as the now variable
+# Read the folder name and then apply the program to that. The folder is inside Magnetometer/python
 desktop = os.path.expanduser("~/Desktop")
 input_folder = os.path.join(desktop, "MagneticCSVs")
 output_folder = os.path.join(desktop, "MagneticPlots")
